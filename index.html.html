@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uma Shailaja Nanduri — AI/ML Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0F;
+    --bg2: #11111A;
+    --bg3: #1A1A28;
+    --accent: #7B61FF;
+    --accent2: #00D9C0;
+    --accent3: #FF6B6B;
+    --text: #E8E8F0;
+    --muted: #7878A0;
+    --border: rgba(123,97,255,0.18);
+    --mono: 'Space Mono', monospace;
+    --sans: 'Space Grotesk', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.4;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2.4rem; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.88rem; letter-spacing: 0.06em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--text); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Signature element: animated neural-net SVG background */
+  .neural-bg {
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    z-index: 0; opacity: 0.18;
+  }
+
+  .hero-inner { position: relative; z-index: 1; max-width: 900px; }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent2);
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 1.4rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block; width: 28px; height: 1px;
+    background: var(--accent2);
+  }
+
+  h1 {
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.4rem;
+  }
+  h1 .name-highlight {
+    background: linear-gradient(105deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-size: 1.15rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin-bottom: 2.6rem;
+    line-height: 1.7;
+  }
+
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.75rem 1.6rem;
+    font-family: var(--sans); font-size: 0.9rem; font-weight: 500;
+    border-radius: 6px; cursor: pointer; text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: #6a52e8; transform: translateY(-1px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: var(--mono);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.1rem;
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 6rem 4rem; position: relative; z-index: 1; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 3rem;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--bg2); }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .skill-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.6rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .skill-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-3px);
+  }
+  .skill-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .skill-name {
+    font-weight: 600; font-size: 0.95rem;
+    margin-bottom: 0.3rem;
+  }
+  .skill-desc { font-size: 0.82rem; color: var(--muted); }
+
+  .skill-bar-wrap { margin-top: 0.8rem; }
+  .skill-bar-track {
+    width: 100%; height: 3px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 2px; overflow: hidden;
+  }
+  .skill-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    border-radius: 2px;
+    transition: width 1.2s cubic-bezier(.23,1,.32,1);
+    width: 0;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--bg); }
+
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 0.5rem; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item {
+    position: relative;
+    padding: 0 0 2.8rem 2rem;
+  }
+  .timeline-dot {
+    position: absolute; left: -2rem;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--accent);
+    top: 0.55rem;
+    box-shadow: 0 0 12px var(--accent);
+    transform: translateX(-4px);
+  }
+  .timeline-role { font-weight: 600; font-size: 1.05rem; }
+  .timeline-org {
+    color: var(--accent2);
+    font-size: 0.88rem;
+    font-family: var(--mono);
+    margin: 0.25rem 0;
+  }
+  .timeline-date {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-bottom: 0.7rem;
+  }
+  .timeline-desc { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── PROJECT ── */
+  #projects { background: var(--bg2); }
+
+  .project-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2.4rem;
+    max-width: 780px;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent3); }
+  .project-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent3), var(--accent));
+  }
+  .project-tag {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: rgba(255,107,107,0.12);
+    color: var(--accent3);
+    border: 1px solid rgba(255,107,107,0.22);
+    border-radius: 4px;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.72rem;
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.2rem;
+  }
+  .project-title { font-size: 1.45rem; font-weight: 700; margin-bottom: 0.8rem; }
+  .project-desc { color: var(--muted); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.6rem; }
+
+  .tech-stack { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tech-pill {
+    background: rgba(123,97,255,0.1);
+    border: 1px solid rgba(123,97,255,0.2);
+    color: var(--accent);
+    border-radius: 20px;
+    padding: 0.22rem 0.8rem;
+    font-size: 0.76rem;
+    font-family: var(--mono);
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--bg); }
+
+  .edu-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 2rem;
+    max-width: 640px;
+    display: flex; gap: 1.4rem; align-items: flex-start;
+  }
+  .edu-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    background: var(--bg3);
+    width: 52px; height: 52px;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--border);
+  }
+  .edu-degree { font-weight: 600; font-size: 1rem; margin-bottom: 0.25rem; }
+  .edu-uni { color: var(--accent2); font-size: 0.85rem; font-family: var(--mono); margin-bottom: 0.25rem; }
+  .edu-date { color: var(--muted); font-size: 0.78rem; }
+
+  /* ── CERTS ── */
+  #certs { background: var(--bg2); }
+  .certs-list { display: flex; flex-direction: column; gap: 0.8rem; max-width: 600px; }
+  .cert-item {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+  }
+  .cert-badge {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .cert-name { font-weight: 500; font-size: 0.9rem; }
+  .cert-issuer { font-size: 0.76rem; color: var(--muted); }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--bg);
+    text-align: center;
+  }
+  #contact .section-title { margin-bottom: 1rem; }
+  .contact-sub {
+    color: var(--muted); font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+  }
+  .contact-links {
+    display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-family: var(--mono);
+    position: relative; z-index: 1;
+  }
+
+  /* ── SCROLL ANIMATION ── */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .hero-stats { gap: 1.6rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .skill-bar-fill { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">USN // Portfolio</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- Signature: animated neural connections -->
+  <svg class="neural-bg" viewBox="0 0 1200 700" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="ng" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#7B61FF" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#7B61FF" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <!-- nodes -->
+    <g id="nodes">
+      <circle cx="100" cy="200" r="4" fill="#7B61FF" opacity="0.7"/>
+      <circle cx="280" cy="120" r="3" fill="#00D9C0" opacity="0.6"/>
+      <circle cx="500" cy="80" r="5" fill="#7B61FF" opacity="0.8"/>
+      <circle cx="700" cy="180" r="3" fill="#00D9C0" opacity="0.5"/>
+      <circle cx="900" cy="100" r="4" fill="#7B61FF" opacity="0.6"/>
+      <circle cx="1100" cy="200" r="3" fill="#00D9C0" opacity="0.7"/>
+      <circle cx="180" cy="380" r="3" fill="#00D9C0" opacity="0.5"/>
+      <circle cx="400" cy="320" r="4" fill="#7B61FF" opacity="0.7"/>
+      <circle cx="620" cy="400" r="3" fill="#00D9C0" opacity="0.6"/>
+      <circle cx="820" cy="310" r="5" fill="#7B61FF" opacity="0.8"/>
+      <circle cx="1020" cy="380" r="3" fill="#00D9C0" opacity="0.5"/>
+      <circle cx="300" cy="560" r="4" fill="#7B61FF" opacity="0.5"/>
+      <circle cx="560" cy="580" r="3" fill="#00D9C0" opacity="0.6"/>
+      <circle cx="760" cy="540" r="4" fill="#7B61FF" opacity="0.7"/>
+      <circle cx="960" cy="580" r="3" fill="#00D9C0" opacity="0.5"/>
+    </g>
+    <!-- edges -->
+    <g stroke="#7B61FF" stroke-opacity="0.2" stroke-width="1" fill="none">
+      <line x1="100" y1="200" x2="280" y2="120"/>
+      <line x1="280" y1="120" x2="500" y2="80"/>
+      <line x1="500" y1="80" x2="700" y2="180"/>
+      <line x1="700" y1="180" x2="900" y2="100"/>
+      <line x1="900" y1="100" x2="1100" y2="200"/>
+      <line x1="100" y1="200" x2="180" y2="380"/>
+      <line x1="280" y1="120" x2="400" y2="320"/>
+      <line x1="500" y1="80" x2="400" y2="320"/>
+      <line x1="500" y1="80" x2="620" y2="400"/>
+      <line x1="700" y1="180" x2="620" y2="400"/>
+      <line x1="700" y1="180" x2="820" y2="310"/>
+      <line x1="900" y1="100" x2="820" y2="310"/>
+      <line x1="1100" y1="200" x2="1020" y2="380"/>
+      <line x1="180" y1="380" x2="400" y2="320"/>
+      <line x1="400" y1="320" x2="620" y2="400"/>
+      <line x1="620" y1="400" x2="820" y2="310"/>
+      <line x1="820" y1="310" x2="1020" y2="380"/>
+      <line x1="300" y1="560" x2="180" y2="380"/>
+      <line x1="300" y1="560" x2="400" y2="320"/>
+      <line x1="560" y1="580" x2="400" y2="320"/>
+      <line x1="560" y1="580" x2="620" y2="400"/>
+      <line x1="760" y1="540" x2="620" y2="400"/>
+      <line x1="760" y1="540" x2="820" y2="310"/>
+      <line x1="960" y1="580" x2="820" y2="310"/>
+      <line x1="960" y1="580" x2="1020" y2="380"/>
+    </g>
+    <!-- animated pulse -->
+    <circle r="6" fill="#7B61FF" opacity="0.9">
+      <animateMotion dur="8s" repeatCount="indefinite"
+        path="M100,200 L280,120 L500,80 L700,180 L820,310 L620,400 L400,320 L300,560 L560,580 L760,540"/>
+    </circle>
+    <circle r="4" fill="#00D9C0" opacity="0.9">
+      <animateMotion dur="11s" repeatCount="indefinite" begin="-3s"
+        path="M1100,200 L900,100 L700,180 L620,400 L820,310 L960,580 L760,540 L560,580"/>
+    </circle>
+  </svg>
+
+  <div class="hero-inner">
+    <p class="hero-eyebrow">AI/ML Engineer &amp; Developer</p>
+    <h1>
+      <span class="name-highlight">Uma Shailaja</span><br>Nanduri
+    </h1>
+    <p class="hero-tagline">
+      Building intelligent systems at the intersection of machine learning, cybersecurity, and practical software engineering. Currently completing B.Tech in AI&amp;ML at JNTUK.
+    </p>
+    <div class="hero-cta">
+      <a href="mailto:umashailaja2004@gmail.com" class="btn btn-primary">Get in touch ↗</a>
+      <a href="https://www.linkedin.com/in/umashailaja02" target="_blank" class="btn btn-ghost">LinkedIn Profile</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Internships</div>
+      </div>
+      <div>
+        <div class="stat-num">2+</div>
+        <div class="stat-label">AI Certifications</div>
+      </div>
+      <div>
+        <div class="stat-num">2026</div>
+        <div class="stat-label">Graduating</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">Core Competencies</div>
+  <h2 class="section-title reveal">What I work with</h2>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-desc">Primary language for ML pipelines, scripting, and backend services.</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="88"></div></div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🤖</div>
+      <div class="skill-name">Machine Learning</div>
+      <div class="skill-desc">Scikit-learn, TensorFlow, model training and evaluation.</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="82"></div></div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">✍️</div>
+      <div class="skill-name">Prompt Engineering</div>
+      <div class="skill-desc">Certified in foundations of prompt design for generative AI.</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="80"></div></div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">⚙️</div>
+      <div class="skill-name">DevOps</div>
+      <div class="skill-desc">CI/CD pipelines, deployment workflows via WISEN IT internship.</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="65"></div></div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">Flask</div>
+      <div class="skill-desc">Building REST APIs and web applications backed by ML models.</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="72"></div></div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-icon">🛡️</div>
+      <div class="skill-name">Cybersecurity (ML)</div>
+      <div class="skill-desc">Applied AI to threat detection — phishing, anomaly recognition.</div>
+      <div class="skill-bar-wrap">
+        <div class="skill-bar-track"><div class="skill-bar-fill" data-width="70"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">Work History</div>
+  <h2 class="section-title reveal">Internship Experience</h2>
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-role">AI/ML Intern</div>
+      <div class="timeline-org">ExcelR Solutions</div>
+      <div class="timeline-date">2024</div>
+      <div class="timeline-desc">End-to-end AIML workflows — from data preprocessing and feature engineering to model deployment, gaining a full-pipeline perspective on real-world AI projects.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-role">DevOps Intern</div>
+      <div class="timeline-org">WISEN IT Solutions</div>
+      <div class="timeline-date">2023</div>
+      <div class="timeline-desc">Gained practical exposure to DevOps culture, CI/CD practices, containerisation workflows, and deployment automation in a professional engineering environment.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-role">Python Programming Intern</div>
+      <div class="timeline-org">BIST Technologies</div>
+      <div class="timeline-date">2023</div>
+      <div class="timeline-desc">Strengthened core Python skills through project-based learning — building scripts, data manipulation utilities, and automation tools under professional mentorship.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">Featured Work</div>
+  <h2 class="section-title reveal">Real-Time Phishing Detection System</h2>
+  <div class="project-card reveal">
+    <span class="project-tag">🔬 Capstone Project</span>
+    <div class="project-title">AI-Powered Phishing URL Detector</div>
+    <div class="project-desc">
+      A real-time threat detection system that combines cybersecurity principles with supervised machine learning. The system analyses URLs and web content, extracting features that distinguish phishing attempts from legitimate sites, and classifies them with high accuracy — demonstrating how AI can be applied to critical security challenges.
+    </div>
+    <div class="tech-stack">
+      <span class="tech-pill">Python</span>
+      <span class="tech-pill">TensorFlow</span>
+      <span class="tech-pill">Scikit-learn</span>
+      <span class="tech-pill">Flask</span>
+      <span class="tech-pill">REST API</span>
+      <span class="tech-pill">Feature Engineering</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">Academic Background</div>
+  <h2 class="section-title reveal">Education</h2>
+  <div class="edu-card reveal">
+    <div class="edu-icon">🎓</div>
+    <div>
+      <div class="edu-degree">B.Tech — Artificial Intelligence &amp; Machine Learning</div>
+      <div class="edu-uni">VKR, VNB &amp; AGK College of Engineering, Gudivada</div>
+      <div class="edu-date">JNTUK Affiliated · Oct 2022 – Jul 2026</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTS -->
+<section id="certs" style="background: var(--bg2);">
+  <div class="section-label">Credentials</div>
+  <h2 class="section-title reveal">Certifications</h2>
+  <div class="certs-list reveal">
+    <div class="cert-item">
+      <div class="cert-badge">⚡</div>
+      <div>
+        <div class="cert-name">Foundations of Prompt Engineering</div>
+        <div class="cert-issuer">Certified Course · 2024</div>
+      </div>
+    </div>
+    <div class="cert-item">
+      <div class="cert-badge">🧠</div>
+      <div>
+        <div class="cert-name">AI Fluency: Frameworks &amp; Foundations</div>
+        <div class="cert-issuer">Certified Course · 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">Let's Connect</div>
+  <h2 class="section-title reveal">Open to Opportunities</h2>
+  <p class="contact-sub reveal">I'm actively looking for AI/ML roles, research positions, and challenging projects.<br>Reach out — I'd love to talk.</p>
+  <div class="contact-links reveal">
+    <a href="mailto:umashailaja2004@gmail.com" class="btn btn-primary">umashailaja2004@gmail.com</a>
+    <a href="https://www.linkedin.com/in/umashailaja02" target="_blank" class="btn btn-ghost">LinkedIn ↗</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Uma Shailaja Nanduri</span>
+  <span>Gudivada, Andhra Pradesh · India</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => io.observe(r));
+
+  // Skill bar animation
+  const bars = document.querySelectorAll('.skill-bar-fill');
+  const barObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.width = e.target.dataset.width + '%';
+        barObs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  bars.forEach(b => barObs.observe(b));
+</script>
+</body>
+</html>
