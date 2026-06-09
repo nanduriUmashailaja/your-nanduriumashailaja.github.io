@@ -1,7 +1,7 @@
 nanduriumashailaja.github.io/
 ├── index.html
-├── style.css (if needed)
+├── style.css 
 ├── assets/
 │   ├── images/
 │   └── scripts/
-└── README.md (optional)
+└── README.md
