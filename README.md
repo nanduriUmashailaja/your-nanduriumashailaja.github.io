@@ -1,4 +1,4 @@
-your-username.github.io/
+nanduriumashailaja.github.io/
 ├── index.html
 ├── style.css (if needed)
 ├── assets/
