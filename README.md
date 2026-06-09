@@ -1,6 +1,7 @@
-git clone https://github.com/nanduriumashailaja/nanduriumashailaja.github.io
-cd your-username.github.io
-# Copy index.html here
-git add .
-git commit -m "Add portfolio"
-git push origin main
+your-username.github.io/
+├── index.html
+├── style.css (if needed)
+├── assets/
+│   ├── images/
+│   └── scripts/
+└── README.md (optional)
